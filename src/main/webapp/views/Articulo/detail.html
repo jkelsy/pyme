@@ -1,0 +1,24 @@
+<header ng-switch on="$location.path().indexOf('/Articulos/new') > -1">
+    <h3 ng-switch-when="true">Create a new Articulo</h3>
+    <h3 ng-switch-when="false">View or edit Articulo</h3>
+</header>
+<form id="ArticuloForm" name="ArticuloForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group" ng-class="{'has-error': ArticuloForm.descripcion.$invalid}">
+        <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+        <div id="descripcionControls" class="col-sm-10">
+            <input id="descripcion" name="descripcion" type="text" required class="form-control" ng-model="articulo.descripcion" placeholder="Enter the Articulo Descripcion"></input>
+            <span class="help-block error" ng-show="ArticuloForm.descripcion.$error.required">required</span> 
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveArticulo" name="saveArticulo" class="btn btn-primary" ng-disabled="isClean() || ArticuloForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteArticulo" name="deleteArticulo" class="btn btn-danger" ng-show="articulo.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
